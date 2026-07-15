@@ -271,8 +271,12 @@ lark-cli wiki +move --obj-type docx --obj-token <DOC_ID> --target-space-id <SPAC
 2. 定位失败：caption 不在可搜索正文里；改用相邻正文 `--selection-with-ellipsis`。  
 3. `我的文档库`：先 `wiki spaces get space_id=my_library`，再 `wiki +move` docs-to-wiki。  
 4. 不要用 `drive +move` 冒充「我的文档库」。  
-5. lark-cli 版本过旧可能缺 flag；报错时读 skill / `--help`。
-
+5. lark-cli 版本过旧可能缺 flag；报错时读 skill / `--help`。  
+6. **标题格式（禁止出现 `# ##` / `## ###`）**：  
+   - `replace_range` 写入的 markdown 若以 `###` 开头，可能叠在已有 `##` 块上变成字面量 `## ### 标题`。  
+   - **优先**整段 overwrite 干净 markdown，或只替换**不含多余 `#` 的纯正文**。  
+   - 表格用标准 markdown 表，不要在标题行再加一层 `#`。  
+   - 交稿后扫一眼侧栏标题：必须是正常「X Builder 精选」，不能是 `# ## X Builder…`。
 ---
 
 ## 6. 验收清单（交稿前自检）
