@@ -63,19 +63,41 @@ https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/state-feed.j
 2. 若原帖链到文章/latent.space/changelog：**打开原文**，把「别人推荐用什么 / 选型表 / 关键数据」拆进正文（表格或 bullet），不要只写「后续贴了某汇总」。
 3. 记录 1–3 条**有观点的评论**（原话可短引），并给一句「社区语境 / 读法」。
 
-### Step D — 配图
+### Step D — 配图（**硬性要求，不可跳过**）
 
-1. 从原帖 `media` / pbs.twimg.com 下高清图到本地临时目录。
-2. 飞书 `docs +media-insert` 要求 **相对路径** → 先 `cd` 到图片目录。
-3. 用 `--selection-with-ellipsis` 插到**对应段落旁**，不要堆在文末。
-4. 每张图加 `--caption`（谁 + 什么）。
-5. 优先：产品截图、信息图、选型图、官方宣发图；跳过纯头像/无意义 meme 可酌情留 1 张情绪板。
+> **纯文字日报不合格。** 交稿前若关键帖没有「解释性配图」，视为未完成 Step D。
+
+#### 必须放什么（有内容、能解释，不是装饰）
+
+对**每条头条**和**每个高价值精选**，用 X thread fetch / 原帖 media 检查是否有图，并按下表取舍：
+
+| 优先级 | 类型 | 例子 | 是否必插 |
+|--------|------|------|----------|
+| P0 | **操作/产品 UI 截图** | `/checkup` 结果、Artifacts 功能图、Work 界面 | 有则**必插** |
+| P0 | **信息图 / 选型表 / 架构图** | 模型档位表、三层 adoption、栈对照 | 有则**必插** |
+| P0 | **官方宣发图**（带产品信息，非纯 logo） | 发布 KV、功能三要点海报 | 有则**必插** |
+| P1 | **演示结果图** | e-reader 固件、训练 progress、dashboard | 头条相关则插 |
+| P2 | **有信息量的 meme** | 额度/reset 梗图、发布周情绪 | 全篇最多 1–2 张 |
+| 跳过 | 纯头像、无字空白、纯风景、足球进球（非 AI） | — | **不插** |
+
+#### 数量底线
+
+- 正常有图日：**≥ 3 张**解释性配图；头条尽量 **每条至少 1 张**（原帖无图可跳过并在脑中记下，不硬凑）。
+- 若当日 feed 几乎无 media：至少对 Top 互动帖做 thread fetch；仍无图则在文首注明「当日关键帖无可用截图」，**不得假装已配图**。
+
+#### 操作步骤
+
+1. thread fetch 头条/高赞帖 → 收集 `pbs.twimg.com/media/...`（优先 `?name=large`）。
+2. 下载到本地临时目录；飞书 `docs +media-insert` 要求 **相对路径** → 先 `cd` 到图片目录。
+3. **`--selection-with-ellipsis` 插到对应段落旁**（标题下或「读法」前），**禁止**只堆在文末图库。
+4. 每张图加 `--caption`：`@handle：一句话说明图在解释什么`。
+5. create/overwrite 正文**之后**再插图（定位更稳）；保留已有 image token 时勿盲目 overwrite 冲掉图。
 
 ### Step E — 写 markdown → 飞书
 
 1. 本地写完整 markdown（见第 2 节骨架）。
 2. `lark-cli docs +create --title "YYYY-MM-DD AI Builders Digest" --markdown @./file.md --as user`
-3. 再插图（create 后再 media-insert，定位更稳）。
+3. **立即执行 Step D 插图**（create 后 media-insert；无图不算交付）。
 4. 迁入我的文档库：
 
 ```bash
@@ -220,7 +242,8 @@ lark-cli wiki +move --obj-type docx --obj-token <DOC_ID> --target-space-id <SPAC
 - [ ] 头条 2–4 条，每条有社区语境 + 读法
 - [ ] 至少 1 处「外链内容展开」（表或 bullet），不是只丢 URL
 - [ ] 有评论区情绪板 + 4–6 条可带走判断
-- [ ] 关键帖配图已插入对应章节（非仅文末）
+- [ ] **配图（硬性）**：≥3 张解释性图（或已注明当日无 media）；插在段落旁 + caption；非文末堆图
+- [ ] **未跳过** P0：产品 UI / 信息图 / 官方功能宣发图（原帖有 media 却未下未插 = 不合格）
 - [ ] 已在我的文档库，wiki 链接已发用户
 - [ ] **通读**：不像「按人归档的 CRM」，像「今天发生了什么」
 
