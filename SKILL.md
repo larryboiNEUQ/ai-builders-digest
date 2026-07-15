@@ -209,21 +209,23 @@ lark-cli wiki +move --obj-type docx --obj-token <DOC_ID> --target-space-id <SPAC
 > **「其他硬信号 / 其他值得扫一眼」类表格必须带链接列，禁止只有 Builder+要点。**
 
 1. **正文内联（主路径）**：每条头条、每个精选小节，在该段**首段或标题下第一行**放可点链接：
-   - 写法：`>> [原帖 @handle](url)` 或 `>> [Making-of](url) · [Artifacts 博文](url)`
-   - 多条相关帖用 ` · ` 分隔，**最多 3 个**，其余放文末
-2. **「其他 / 次要 Builder」表格（强制 3 列）**：
+   - 写法：`>> [@handle · 主题](url)` 或 `>> [Making-of Claude Code](url) · [Artifacts 博文](url)`
+   - 文案要带 **handle 或主题关键词**，禁止一律「原帖」
+   - 多条相关帖用 ` · ` 分隔，**最多 3 个**，其余放文末2. **「其他 / 次要 Builder」表格（强制 3 列）**：
 
 ```markdown
-| Builder | 要点 | 原帖 |
+| Builder | 要点 | 链接 |
 |---------|------|------|
-| **Josh Woodward** | … | [原帖](https://x.com/...) |
-| **Madhu Guru** | … | [原帖](https://x.com/...) |
+| **Josh Woodward** | … | [@joshwoodward · Top10](https://x.com/...) |
+| **Madhu Guru** | … | [@realmadhuguru · 加盟 Meta](https://x.com/...) |
 ```
 
-   - 列名固定：`Builder` · `要点` · **`原帖`**
-   - 原帖列只放短链文字如 `[原帖](url)` / `[@handle](url)`，不要把长 URL 裸露在单元格里
-   - **禁止**表下再挂一排游离链接代替表格列（如图片里 Madhu / Josh 掉在表外那种）
-
+   - 列名：`Builder` · `要点` · **`链接`**（或「来源」；避免整列都叫「原帖」却看不出是谁）
+   - **链接文案必须可辨识**，禁止全篇都写成「原帖」：
+     - 推荐：`[@handle]`、`[@handle · 一句话主题]`、`[官方博文标题缩写]`
+     - 禁止：整表/整段清一色 `[原帖](url)`（飞书里会变成一排同名蓝字，无法扫读）
+   - 不要把长 URL 裸露在单元格里
+   - **禁止**表下再挂一排游离链接代替表格列
 3. **官方博客（每篇必链）**：标题本身做成链接，或标题下第一行 `>> [全文](url)`：
 
 ```markdown
